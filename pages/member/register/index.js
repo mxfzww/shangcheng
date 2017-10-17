@@ -2,7 +2,9 @@ var e = getApp(),
   t = e.requirejs("core");
 Page({
   data: {},
+  val:1,
   onLoad: function (e) { 
+    this.val = e.page;
     this.setData(e)
   },
   onShow: function () {
@@ -42,7 +44,7 @@ Page({
     });
   },
   submit: function (e) {
-   // console.log(this.data.member);
+    console.log(this.val);
     if (!this.data.member.goods)
       return void t.alert("请填写,商户名称!");
     if (!this.data.member.project)
@@ -65,6 +67,7 @@ Page({
       mobile: this.data.member.phone,
       uname: this.data.member.account,
       upass: this.data.member.pwd,
+      classification: this.val,
         };
     t.post("commission/merchregister", i, function (e) {
     if (1 == e.status){
